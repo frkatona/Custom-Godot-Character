@@ -1,5 +1,5 @@
 # Custom ~Squirrel Character Model
-
+Custom character modeled/rigged/animated in Blender with Godot glb scene, including project files.
 
 ## Rigged Blender Model
 
@@ -7,10 +7,13 @@
 
 ## Godot Character Scene
 
+![animation](readme/godot-character-animation.gif)
+
 ![godot](readme/godot-character-screenshot.png)
 
 ## todo
 
+- implement pose library
 - blender animations
   - idle
   - walk
@@ -27,6 +30,7 @@
 - polish godot outline shader
 - shape key facial animations
 - basic godot character controller for testing
+- evaluate bone export types for data/profiler overhead
 
 ## Resources
 
