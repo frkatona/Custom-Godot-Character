@@ -1,0 +1,32 @@
+[gd_resource type="VisualShader" format=3 uid="uid://dc0s07wxl24ct"]
+
+[ext_resource type="Texture2D" uid="uid://bklx634h6b8dq" path="res://assets/character/albedo.png" id="1_hie0d"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_yqyto"]
+parameter_name = "albedo"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_fc2sh"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_m32x8"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_awckr"]
+varying_name = "shade"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_hie0d"]
+texture = ExtResource("1_hie0d")
+
+[resource]
+varyings/shade = "1,0"
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_yqyto")
+nodes/fragment/2/position = Vector2(-304, 208)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorDecompose_fc2sh")
+nodes/fragment/4/position = Vector2(-32, -16)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_m32x8")
+nodes/fragment/5/position = Vector2(-432, 32)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVaryingSetter_awckr")
+nodes/fragment/6/position = Vector2(240, 16)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_hie0d")
+nodes/fragment/7/position = Vector2(64, 192)
+nodes/fragment/connections = PackedInt32Array(5, 0, 4, 0, 4, 1, 6, 0, 7, 0, 0, 0)

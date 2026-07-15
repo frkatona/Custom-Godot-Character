@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b28efnvsxl128"]
+
+[ext_resource type="PackedScene" uid="uid://b61sc3gn8c8i0" path="res://assets/character/anime-squirrel-test.glb" id="1_character"]
+[ext_resource type="Material" uid="uid://cfrvk3yxjv7my" path="res://assets/character/toon_material.tres" id="2_toon_material"]
+
+[node name="anime-squirrel-test" unique_id=884326333 instance=ExtResource("1_character")]
+
+[node name="model" parent="." index="0" unique_id=1104583362]
+surface_material_override/0 = ExtResource("2_toon_material")

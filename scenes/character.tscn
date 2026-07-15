@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c504175qbdsk3"]
+
+[ext_resource type="PackedScene" uid="uid://b61sc3gn8c8i0" path="res://assets/character/anime-squirrel-test.glb" id="1_rkhd4"]
+[ext_resource type="Material" uid="uid://cfrvk3yxjv7my" path="res://assets/character/toon_material.tres" id="2_lrhn5"]
+
+[node name="Node3D" type="Node3D" unique_id=1172078208]
+
+[node name="anime-squirrel-test" parent="." unique_id=1393948384 instance=ExtResource("1_rkhd4")]
+
+[node name="model" parent="anime-squirrel-test" index="0" unique_id=1104583362]
+surface_material_override/0 = ExtResource("2_lrhn5")
+
+[editable path="anime-squirrel-test"]
