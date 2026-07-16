@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b61sc3gn8c8i0"
-path="res://.godot/imported/anime-squirrel-test.glb-01920f57384c3971d971a71c2661f396.scn"
+uid="uid://ddkq5duwwbkgv"
+path="res://.godot/imported/squirrelLady.glb-ef7e89b919e16bbdf4f4e7f95fb0ba9c.scn"
 
 [deps]
 
-source_file="res://assets/character/anime-squirrel-test.glb"
-dest_files=["res://.godot/imported/anime-squirrel-test.glb-01920f57384c3971d971a71c2661f396.scn"]
+source_file="res://assets/character/squirrelLady.glb"
+dest_files=["res://.godot/imported/squirrelLady.glb-ef7e89b919e16bbdf4f4e7f95fb0ba9c.scn"]
 
 [params]
 

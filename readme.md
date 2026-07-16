@@ -14,6 +14,7 @@ Custom character modeled/rigged/animated in Blender (5.2.0) with Godot (4.7.1) g
 
 - model fixes
   - [ ] decouple bottom of shoulder belt from arm movements
+  - [ ] make bone weights uniform across the pouches (double checking the pouch buttons)
 - [x] implement pose library
 - blender animations
   - [x] idle
@@ -32,6 +33,7 @@ Custom character modeled/rigged/animated in Blender (5.2.0) with Godot (4.7.1) g
 - [ ] shape key facial animations
 - [ ] basic godot character controller for testing
 - [ ] evaluate bone export types for data/profiler overhead
+  - [ ] clean keyframes
 
 ## External Resources
 
