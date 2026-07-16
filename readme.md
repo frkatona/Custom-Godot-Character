@@ -14,7 +14,8 @@ Custom character modeled/rigged/animated in Blender (5.2.0) with Godot (4.7.1) g
 
 - model fixes
   - [ ] decouple bottom of shoulder belt from arm movements
-  - [ ] make bone weights uniform across the pouches (double checking the pouch buttons)
+  - [ ] make bone weights uniform across the pouches(double checking the pouch buttons)
+  - [ ] add extra jiggle bones
 - [x] implement pose library
 - blender animations
   - [x] idle
@@ -24,7 +25,7 @@ Custom character modeled/rigged/animated in Blender (5.2.0) with Godot (4.7.1) g
   - [ ] backflip
   - [ ] slide
   - [ ] rail-grind
-- [ ]corresponding sound fx
+- [ ] corresponding sound fx
 - fur
   - [ ] polish tufts in Blender
   - [ ] try adding smaller hair cards and overlaying textures
