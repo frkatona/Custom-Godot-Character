@@ -10,12 +10,13 @@ Custom character modeled/rigged/animated in Blender (5.2.0) with Godot (4.7.1) g
 
 ![animation](readme/godot-character-animation.gif)
 
+![crossbow aim](readme/godot-character-crossbowAim-screenshot.png)
 ## todo
 
 - model fixes
-  - [ ] decouple bottom of shoulder belt from arm movements
-  - [ ] make bone weights uniform across the pouches(double checking the pouch buttons)
-  - [ ] add extra jiggle bones
+  - [ ] finish decoupling bottom of shoulder belt from arm movements
+  - [x] make bone weights uniform across the pouches(double checking the pouch buttons)
+  - [x] add extra jiggle bones
 - [x] implement pose library
 - blender animations
   - [x] idle
