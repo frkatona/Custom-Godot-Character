@@ -102,14 +102,10 @@ uniform vec2 uv_scale = vec2(1,1);
 uniform vec2 uv_offset = vec2(0,0);
 group_uniforms;
 
-
-
 // Vertex function to deal with UV scale and offset, straight out of base code.
 void vertex() {
 	UV = UV * uv_scale.xy + uv_offset.xy;
 }
-
-
 
 void fragment() {
 	vec2 base_uv = UV;
