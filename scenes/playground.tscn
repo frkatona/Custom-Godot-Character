@@ -288,8 +288,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, -7.5)
 pixel_size = 0.007
 billboard = 1
 modulate = Color(1, 0.8627451, 0.6666667, 1)
-text = "WALL HOLD
-Jump + hold E"
+text = "WALL BOUNCE
+Jump toward wall / Space"
 font_size = 40
 outline_size = 8
 
@@ -357,8 +357,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2, 2)
 pixel_size = 0.007
 billboard = 1
 modulate = Color(1, 0.88235295, 0.63529414, 1)
-text = "SLIDE
-Shift / Ctrl"
+text = "DASH > SLIDE
+Shift then Ctrl / C"
 font_size = 40
 outline_size = 8
 

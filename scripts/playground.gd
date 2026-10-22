@@ -16,9 +16,9 @@ func _ready() -> void:
 	rows.add_theme_constant_override("separation", 5)
 	margin.add_child(rows)
 	_label(rows, "MOVEMENT PLAYGROUND", 20, Color("f5e9d3"))
-	_label(rows, "WASD / arrows  Move    Mouse  Look    Space  Jump    RMB  Aim", 16)
-	_label(rows, "Shift / Ctrl  Slide    E  Ride zipline / hold wall    R  Reset    Esc  Free mouse", 16)
-	_label(rows, "At the wall: jump + hold E to hang; Space to push off. Click to capture mouse.", 14, Color("bac9cb"))
+	_label(rows, "WASD / arrows  Move    Mouse  Look    Space  Jump / double jump    RMB  Aim", 16)
+	_label(rows, "Shift  Dash    Ctrl / C  Slide    E  Ride zipline    R  Reset    Esc  Free mouse", 16)
+	_label(rows, "Dash into a slide. Press toward an airborne wall to grip; Space to bounce. Click to capture mouse.", 14, Color("bac9cb"))
 	_status = _label(rows, "", 16, Color("8ae0ce"))
 	_hint = _label(rows, "", 16, Color("ffd697"))
 	_reticle = Label.new()
@@ -30,22 +30,24 @@ func _ready() -> void:
 	_reticle.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _process(_delta: float) -> void:
-	_status.text = "%s    %.1f m/s    Aim blend %d%%" % [
-		character.animation_clip,
-		Vector2(character.velocity.x, character.velocity.z).length(),
+	_status.text = "%s    %.1f m/s    Air jump %d    Dash %s    Aim %d%%" % [
+		"dash" if character.mode == character.Mode.DASHING else str(character.animation_clip),
+		character.horizontal_speed(),
+		character._air_jumps_left,
+		"ready" if character._dash_cooldown_left <= 0.0 and (character.is_on_floor() or character._air_dashes_used < character.air_dash_limit) else "recharging",
 		roundi(character.animation_tree.aim_weight * 100.0),
 	]
 	_reticle.visible = character.is_aiming
 	_reticle.position = get_viewport().get_visible_rect().size * 0.5 - Vector2(6, 14)
 	_hint.text = ""
 	if character.mode == character.Mode.WALL_HOLD:
-		_hint.text = "Holding wall  ·  Space to push off  ·  Release E to drop"
+		_hint.text = "Wall grip  |  Space to bounce  |  Move away to release"
 	elif character.mode == character.Mode.ZIPLINE:
-		_hint.text = "Riding zipline  ·  Space to jump off"
+		_hint.text = "Riding zipline  |  Space to jump off"
 	else:
 		for line in get_tree().get_nodes_in_group("ziplines"):
 			if character.global_position.distance_to(line.get_start_position()) < 1.5:
-				_hint.text = "E  ·  Ride zipline"
+				_hint.text = "E  |  Ride zipline"
 
 func _label(parent: Node, value: String, size: int, tint := Color("e3eceb")) -> Label:
 	var label := Label.new()

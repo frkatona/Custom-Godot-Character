@@ -52,7 +52,11 @@ aim={
 }
 slide={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":4194325), Object(InputEventKey,"physical_keycode":4194326)]
+"events": [Object(InputEventKey,"physical_keycode":4194326), Object(InputEventKey,"physical_keycode":67)]
+}
+dash={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194325)]
 }
 interact={
 "deadzone": 0.2,
