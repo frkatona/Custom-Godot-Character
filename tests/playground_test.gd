@@ -20,10 +20,18 @@ func _run() -> void:
 	check(player.animation_clip == &"idle", "Stationary character plays idle")
 	var idle: Animation = player.get_node("squirrelLady/AnimationPlayer").get_animation("controller/idle")
 	check(idle.loop_mode == Animation.LOOP_LINEAR and idle.length > 0.1, "Idle is a looping animation, not a frozen basis pose")
+	if player.get_node("squirrelLady/AnimationPlayer").has_animation("idle1"):
+		check(not player.animation_tree.idle_uses_fallback, "The exported idle1 takes priority over the generated fallback")
 	var skeleton: Skeleton3D = player.get_node("squirrelLady/rigify_rig/Skeleton3D")
-	var before_idle := skeleton.get_bone_pose_rotation(skeleton.find_bone("DEF-spine.002"))
+	var before_idle: Array[Transform3D] = []
+	for bone in skeleton.get_bone_count():
+		before_idle.append(skeleton.get_bone_pose(bone))
 	await step(20)
-	check(not before_idle.is_equal_approx(skeleton.get_bone_pose_rotation(skeleton.find_bone("DEF-spine.002"))), "Idle advances over time")
+	var idle_changed := false
+	for bone in skeleton.get_bone_count():
+		idle_changed = idle_changed or not before_idle[bone].is_equal_approx(skeleton.get_bone_pose(bone))
+	check(idle_changed, "Idle advances over time")
+	await verify_restored_slide()
 	await screenshot("playground_overview")
 	var start := player.global_position
 	Input.action_press("move_forward")
@@ -90,6 +98,27 @@ func verify_double_jump() -> void:
 	Input.action_release("jump")
 	await step(65)
 	check(player.is_on_floor() and player._air_jumps_left == player.extra_jumps, "Landing restores the extra jump")
+
+func verify_restored_slide() -> void:
+	var source: AnimationPlayer = player.get_node("squirrelLady/AnimationPlayer")
+	check(source.has_animation("idle1") and source.has_animation("sliding"), "Authored idle and restored slide are both exported")
+	var slide := source.get_animation("sliding")
+	check(slide.loop_mode == Animation.LOOP_LINEAR and slide.length > 0.5 and slide.length < 0.7, "Restored slide loops the original short cycle")
+	check(player.animation_tree.tree_root.get_node("sliding").animation == &"sliding", "Slide state uses the restored animation directly")
+	var sample: CharacterBody3D = load("res://scenes/character.tscn").instantiate()
+	sample.capture_mouse_on_start = false
+	root.add_child(sample)
+	sample.set_physics_process(false)
+	var skeleton: Skeleton3D = sample.get_node("squirrelLady/rigify_rig/Skeleton3D")
+	skeleton.get_node("bone_spring").active = false
+	for frame in 30:
+		sample.animation_tree.update_pose(&"idle", false, 1.0, 1.0 / 60.0)
+	var idle_height := skeleton.get_bone_global_pose(skeleton.find_bone("DEF-spine.006")).origin.y
+	for frame in 30:
+		sample.animation_tree.update_pose(&"sliding", false, 1.0, 1.0 / 60.0)
+	var slide_height := skeleton.get_bone_global_pose(skeleton.find_bone("DEF-spine.006")).origin.y
+	check(slide_height < idle_height - 0.3, "Idle stays upright while the restored slide uses the low authored pose")
+	sample.queue_free()
 
 func verify_dash() -> void:
 	await reset_at()

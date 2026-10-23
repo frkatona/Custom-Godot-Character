@@ -20,7 +20,7 @@ func _ready() -> void:
 	callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	var player := get_node(anim_player) as AnimationPlayer
 	player.stop()
-	_prepare_idle(player)
+	_prepare_local_animations(player)
 	# Rebind after adding the local idle library so the tree sees its clips immediately.
 	var player_path := anim_player
 	anim_player = NodePath()
@@ -87,11 +87,11 @@ func update_pose(clip: StringName, aiming: bool, run_speed: float, delta: float)
 func restart_movement() -> void:
 	_restart_pending = true
 
-func _prepare_idle(player: AnimationPlayer) -> void:
+func _prepare_local_animations(player: AnimationPlayer) -> void:
 	# Prefer an authored idle after the next GLB export. Keep all imported resources intact.
 	var source: Animation
 	for clip in player.get_animation_list():
-		if str(clip).get_file().to_lower() in ["idle", "idle_loop"]:
+		if str(clip).get_file().to_lower() in ["idle", "idle1", "idle_loop"]:
 			source = player.get_animation(clip)
 			break
 	idle_uses_fallback = source == null
